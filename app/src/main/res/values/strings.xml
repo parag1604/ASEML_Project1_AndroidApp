@@ -6,4 +6,9 @@
     values-round/strings.xml for round devices.
     -->
     <string name="hello_world">Hello Square World!</string>
+    <string name="send">Send</string>
+    <string name="enter_text_here">Enter text here</string>
+    <string name="enter_email_or_phone_number">Enter email or phone number</string>
+    <string name="confirm">Confirm</string>
+    <string name="voice_input_button">Voice input button</string>
 </resources>

@@ -12,18 +12,20 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="286dp"
         android:ems="10"
-        android:hint="Enter email or phone number"
-        android:inputType="textPersonName"
+        android:hint="@string/enter_email_or_phone_number"
+        android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="TextFields"
+        android:autofillHints="email or numeric" />
 
     <Button
         android:id="@+id/confirm_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:text="Confirm"
+        android:text="@string/confirm"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailOrNumber" />
