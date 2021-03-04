@@ -10,15 +10,15 @@
         android:id="@+id/emailOrNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="286dp"
+        android:layout_marginTop="192dp"
+        android:autofillHints="email or numeric"
         android:ems="10"
         android:hint="@string/enter_email_or_phone_number"
         android:inputType="text"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="TextFields"
-        android:autofillHints="email or numeric" />
+        tools:ignore="TextFields" />
 
     <Button
         android:id="@+id/confirm_button"
