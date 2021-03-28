@@ -29,8 +29,8 @@ public class MainActivityUnitTest {
             = new ActivityScenarioRule<>(MainActivity.class);
 
     @Before
-    public void initValidString() {
-        // Specify a valid string.
+    public void initValidStrings() {
+        // Specify valid strings.
         stringToBeTyped = "testing";
         stringToBeSpoken = "hello";
     }
@@ -83,4 +83,5 @@ public class MainActivityUnitTest {
         onView(withId(R.id.input_text))
                 .check(matches(withText(stringToBeTyped)));
     }
+    
 }
