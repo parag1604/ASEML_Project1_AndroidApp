@@ -5,8 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -36,7 +34,7 @@ public class SubActivity extends AppCompatActivity {
         final Boolean[] is_email = {Boolean.FALSE};
         final String[] emailOrNumber = new String[1];
 
-        text_input = (EditText) findViewById(R.id.emailOrNumber);
+        text_input = findViewById(R.id.emailOrNumber);
         text_input.addTextChangedListener(new TextValidator(text_input) {
             @Override public void validate(TextView textView, String text) {
                 if (text.isEmpty()) {
@@ -68,16 +66,13 @@ public class SubActivity extends AppCompatActivity {
             }
         });
 
-        confirm_button = (Button) findViewById(R.id.confirm_button);
-        confirm_button.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (is_valid_input[0]) {
-                    displayToast(context, toast_text[0], duration,
-                            is_email[0], emailOrNumber[0]);
-                } else {
-                    text_input.setError(toast_text[0]);
-                }
+        confirm_button = findViewById(R.id.confirm_button);
+        confirm_button.setOnClickListener(v -> {
+            if (is_valid_input[0]) {
+                displayToast(context, toast_text[0], duration,
+                        is_email[0], emailOrNumber[0]);
+            } else {
+                text_input.setError(toast_text[0]);
             }
         });
 
@@ -91,23 +86,24 @@ public class SubActivity extends AppCompatActivity {
         if (is_email) {
             try {
                 Intent emailIntent = new Intent(Intent.ACTION_SEND);
-//                        Uri.fromParts("email", recipient, null));
-                emailIntent.setType("text/plain");
-                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[] {recipient}); // recipients
+                emailIntent.setType("text/rfc822");
+                emailIntent.putExtra(Intent.EXTRA_EMAIL, new String[]{recipient});
                 emailIntent.putExtra(Intent.EXTRA_SUBJECT, "Automated email");
                 emailIntent.putExtra(Intent.EXTRA_TEXT, message);
-                startActivity(Intent.createChooser(emailIntent, "Send automated email ..."));
+                startActivity(Intent.createChooser(
+                        emailIntent, "Send automated email ..."));
                 finish();
             } catch (android.content.ActivityNotFoundException ex) {
-                Toast.makeText(getApplicationContext(), "There is no email client installed.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(),
+                        "There is no email client installed.",
+                        Toast.LENGTH_SHORT).show();
             }
         } else {
             Intent messageIntent = new Intent(Intent.ACTION_VIEW,
                     Uri.fromParts("sms", recipient, null));
             messageIntent.putExtra("sms_body", message);
-            startActivity(messageIntent);
+            startActivity(Intent.createChooser(
+                    messageIntent, "Send automated message ..."));
         }
     }
-
-
 }

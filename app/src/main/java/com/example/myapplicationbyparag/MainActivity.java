@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         data = getSharedPreferences("DataStorage", Context.MODE_PRIVATE);
 
-        input_text = (EditText) findViewById(R.id.input_text);
+        input_text = findViewById(R.id.input_text);
         input_text.addTextChangedListener(new TextValidator(input_text) {
             @Override public void validate(TextView textView, String text) {
                 SharedPreferences.Editor editor = data.edit();
@@ -44,11 +44,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        send_button = (Button) findViewById(R.id.send_button);
+        send_button = findViewById(R.id.send_button);
         send_button.setEnabled(Boolean.FALSE);
         send_button.setOnClickListener(v -> openNewActivity());
 
-        voice_button = (ImageView) findViewById(R.id.voice_button);
+        voice_button = findViewById(R.id.voice_button);
         Intent speechIntent = new Intent(
                 RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
         speechIntent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL,
